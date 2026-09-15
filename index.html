@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Приёмка автомобиля — MAZDA CX-50 · Центр оклейки автомобилей</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Фирменные цвета: меняются здесь ---------- */
+  :root{
+    --bg:#0a0a0a;          /* фон страницы */
+    --bg-2:#161617;        /* блоки */
+    --line:#262628;        /* разделители */
+    --text:#ffffff;        /* основной текст */
+    --muted:#a3a3a6;       /* второстепенный текст */
+    --red:#e01b24;         /* фирменный красный */
+    --ok:#ffffff;          /* «дефектов не обнаружено» */
+    --warn:#e01b24;        /* найденные дефекты */
+    --radius:0px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,video{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  /* ---------- Шапка ---------- */
+  .top{border-bottom:1px solid var(--line);padding:22px 0}
+  .top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .brand{font-weight:800;font-size:13px;letter-spacing:.06em;line-height:1.25;text-transform:uppercase}
+  .brand span{display:block}
+  .top a.tel{text-decoration:none;color:var(--muted);font-size:14px}
+  .top a.tel:hover{color:var(--text)}
+
+  /* ---------- Паспорт автомобиля ---------- */
+  .hero{padding:64px 0 48px;border-bottom:1px solid var(--line)}
+  .hero .kicker{color:var(--red);font-size:15px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;margin-bottom:18px;display:flex;align-items:center;gap:16px}
+  .hero .kicker::before{content:"";width:64px;height:3px;background:var(--red)}
+  .hero h1{font-size:clamp(44px,7.5vw,92px);font-weight:800;line-height:.95;letter-spacing:-.01em}
+  .hero .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px 40px;margin-top:44px}
+  .fact dt{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+  .fact dd{font-size:18px;font-weight:600}
+  .fact.wide{grid-column:1/-1}
+  .hero .prep{margin-top:40px;padding:22px 24px;background:var(--bg-2);border-radius:var(--radius);max-width:720px;font-size:16px}
+  .hero .prep b{font-weight:600}
+
+  /* ---------- Секции ---------- */
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:0}
+  h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;text-transform:uppercase;margin-bottom:8px}
+  h3{font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin:40px 0 14px;display:flex;align-items:center;gap:12px}
+  h3::before{content:"";width:28px;height:2px;background:var(--red)}
+  h3:first-of-type{margin-top:0}
+  .lead{color:var(--muted);max-width:640px;margin-bottom:28px}
+
+  .status{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;font-weight:600;font-size:14px;text-transform:uppercase;letter-spacing:.04em;border:1px solid currentColor;margin:4px 0 24px}
+  .status.ok{color:var(--ok)}
+  .status.warn{color:var(--warn)}
+  .status i{width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block}
+
+  /* ---------- Карусель ---------- */
+  .car{position:relative}
+  .car .track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+  .car .track::-webkit-scrollbar{display:none}
+  .car .track a{flex:0 0 auto;height:420px;scroll-snap-align:start;background:var(--bg-2);border-radius:var(--radius);overflow:hidden}
+  .car .track img{height:100%;width:auto;display:block}
+  .car .track a:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+  .car .empty{padding:28px;color:var(--muted);border:1px dashed var(--line);text-align:center;font-size:14px;border-radius:var(--radius)}
+  .car .bar{display:flex;align-items:center;gap:10px;margin-top:12px;color:var(--muted);font-size:14px}
+  .car .bar .count{min-width:72px;font-family:"Bebas Neue",sans-serif;font-size:22px;letter-spacing:.04em;color:var(--text)}
+  .car .bar button{width:42px;height:42px;border:1px solid var(--line);background:var(--bg-2);color:var(--text);font-size:22px;cursor:pointer;line-height:1}
+  .car .bar button:hover{background:var(--red);border-color:var(--red)}
+  .car .bar button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+  .car .bar .hint{margin-left:auto}
+
+  /* ---------- Видео / PDF ---------- */
+  .media{background:var(--bg-2);border-radius:var(--radius);overflow:hidden}
+  .media video{width:100%;aspect-ratio:16/9;background:#000}
+  .videos{display:grid;gap:8px}
+  .media iframe.gd{width:100%;aspect-ratio:16/9;height:auto;border:0;background:#000}
+  @media (min-width:700px){.videos{grid-template-columns:repeat(3,1fr)}.media iframe.gd{aspect-ratio:9/16;max-height:560px}}
+  .media iframe{width:100%;height:min(80vh,760px);border:0;background:#fff}
+  .media + .link{margin-top:12px;font-size:14px;color:var(--muted)}
+  .media + .link a{color:var(--text)}
+
+  /* ---------- Дефекты ---------- */
+  .defects{display:grid;gap:12px;max-width:760px}
+  .defect{display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start;padding:18px 20px;background:var(--bg-2);border-radius:var(--radius)}
+  .defect .n{font-family:"Bebas Neue",sans-serif;font-size:28px;line-height:1;color:var(--red)}
+  .defect p{font-size:17px;font-weight:500}
+  .defect small{display:block;color:var(--muted);margin-top:4px;font-size:14px}
+  .note{margin-top:28px;max-width:760px;padding:20px 22px;border-left:3px solid var(--warn);font-size:15px;background:var(--bg-2);border-radius:0 var(--radius) var(--radius) 0}
+
+  /* ---------- Рекомендации ---------- */
+  .recs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;max-width:760px}
+  .rec{padding:28px 24px;border:1px solid var(--line);border-radius:var(--radius)}
+  .rec{border-left:3px solid var(--red)}
+  .rec b{display:block;font-size:17px;font-weight:800;text-transform:uppercase;margin-bottom:8px}
+  .rec span{color:var(--muted);font-size:15px}
+
+  footer{padding:36px 0 48px;color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  /* ---------- Лайтбокс ---------- */
+  .lb{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:24px}
+  .lb.open{display:flex}
+  .lb img{max-width:100%;max-height:100%;object-fit:contain}
+  .lb button{position:absolute;top:16px;right:16px;background:none;border:0;color:#fff;font-size:32px;cursor:pointer;line-height:1;padding:8px}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);font-size:40px;padding:16px}
+  .lb .prev{left:8px;right:auto}
+  .lb .next{right:8px}
+  .lb .cnt{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#aaa;font-family:"Bebas Neue",sans-serif;font-size:20px;letter-spacing:.04em}
+
+  @media (max-width:600px){
+    section{padding:40px 0}
+    .hero{padding:44px 0 36px}
+    .car .track a{height:260px}
+    .car .bar .hint{display:none}
+    .lb .nav{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span>Центр</span><span>оклейки</span><span>автомобилей</span></div>
+    <a class="tel" href="tel:+79022290060">8 (902) 229-00-60</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Отчёт о приёмке автомобиля</div>
+    <h1>MAZDA CX-50</h1>
+    <dl class="facts">
+      <div class="fact"><dt>Цвет</dt><dd>Чёрный</dd></div>
+      <div class="fact"><dt>Владелец</dt><dd>Андрей</dd></div>
+      <div class="fact"><dt>VIN</dt><dd>LVRHDCAC6TN045148</dd></div>
+      <div class="fact wide"><dt>Услуга</dt><dd>Полная оклейка в сатиновую полиуретановую плёнку, оклейка глянцевой вставки переднего бампера</dd></div>
+    </dl>
+    <p class="prep">
+      Перед фото- и видеофиксацией автомобиль прошёл частичную подготовку к оклейке:
+      <b>двухфазная мойка с химической чисткой</b> от битума и металлических вкраплений.
+    </p>
+  </div>
+</div>
+
+<main>
+
+  <section id="photos">
+    <div class="wrap">
+      <h2>Фото и видео приёмки</h2>
+      <p class="lead">Состояние автомобиля на момент передачи в студию.</p>
+
+      <h3>Экстерьер</h3>
+      <div class="car" data-gallery="exterior"><div class="track"></div></div>
+
+      <h3>Интерьер</h3>
+      <div class="car" data-gallery="interior"><div class="track"></div></div>
+
+      <h3>Подкапотное пространство</h3>
+      <div class="car" data-gallery="engine"><div class="track"></div></div>
+
+      <h3>Детальное видео</h3>
+      <div class="videos">
+        <div><div class="media"><iframe class="gd" src="https://drive.google.com/file/d/1VmlMswiYryk7pThZLUDsjdRvzrkWt0g2/preview" allow="autoplay; fullscreen" allowfullscreen title="Видео 1"></iframe></div><p class="link">Не играет? <a href="https://drive.google.com/file/d/1VmlMswiYryk7pThZLUDsjdRvzrkWt0g2/view" target="_blank">Открыть видео на Google Диске</a></p></div>
+        <div><div class="media"><iframe class="gd" src="https://drive.google.com/file/d/1TemNdwLJW2S4posoXjxRfS6lflpm5dcv/preview" allow="autoplay; fullscreen" allowfullscreen title="Видео 2"></iframe></div><p class="link">Не играет? <a href="https://drive.google.com/file/d/1TemNdwLJW2S4posoXjxRfS6lflpm5dcv/view" target="_blank">Открыть видео на Google Диске</a></p></div>
+        <div><div class="media"><iframe class="gd" src="https://drive.google.com/file/d/1FoPKUfx2C9Ylxxky3vnIMebwkWU06SR_/preview" allow="autoplay; fullscreen" allowfullscreen title="Видео 3"></iframe></div><p class="link">Не играет? <a href="https://drive.google.com/file/d/1FoPKUfx2C9Ylxxky3vnIMebwkWU06SR_/view" target="_blank">Открыть видео на Google Диске</a></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="act">
+    <div class="wrap">
+      <h2>Проверка по акту приёмки</h2>
+      <div class="status ok"><i></i>Дефектов не обнаружено</div>
+      <div class="car" data-gallery="act"><div class="track"></div></div>
+    </div>
+  </section>
+
+  <section id="diag">
+    <div class="wrap">
+      <h2>Проверка на ошибки диагностикой</h2>
+      <div class="status ok"><i></i>Неисправностей не обнаружено</div>
+      <div class="car" data-gallery="diag"><div class="track"></div></div>
+    </div>
+  </section>
+
+  <section id="defects">
+    <div class="wrap">
+      <h2>Найденные дефекты</h2>
+      <div class="status warn"><i></i>Обнаружено 2 дефекта</div>
+      <div class="defects">
+        <div class="defect"><span class="n">1</span><div><p>Сколы на передней водительской двери</p></div></div>
+        <div class="defect"><span class="n">2</span><div><p>Следы на болтах дверей</p><small>Возможно, двери снимались либо с ними проводились какие-то манипуляции</small></div></div>
+      </div>
+      <h3>Фото дефектов</h3>
+      <div class="car" data-gallery="defects"><div class="track"></div></div>
+      <p class="note">При разборке автомобиля могут вскрыться скрытые дефекты. При их обнаружении обязательно сообщим и отправим фото- и видеоотчёт.</p>
+    </div>
+  </section>
+
+  <section id="recs">
+    <div class="wrap">
+      <h2>Рекомендации</h2>
+      <p class="lead">Что стоит добавить к текущему заказу.</p>
+      <div class="recs">
+        <div class="rec"><b>Заклеить люк-панораму</b><span>Защита стекла панорамной крыши от сколов и пескоструя.</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>Центр оклейки автомобилей · Ярославль, Большая Октябрьская, 45</div>
+    <div>Ежедневно 09:00–20:00</div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="Просмотр фото">
+  <button class="nav prev" aria-label="Предыдущее">‹</button>
+  <img alt="">
+  <button class="nav next" aria-label="Следующее">›</button>
+  <button class="close" aria-label="Закрыть">×</button>
+  <div class="cnt"></div>
+</div>
+
+<script>
+/* ---------- Списки фото: имена файлов из папок img/... ---------- */
+const mk = (p, n) => Array.from({length:n}, (_,i) => `${p}-${String(i+1).padStart(2,'0')}.jpg`);
+const galleries = {
+  exterior: {dir:'exterior', files: mk('ext', 39)},
+  interior: {dir:'interior', files: mk('int', 55)},
+  engine:   {dir:'engine',   files: mk('eng', 7)},
+  act:      {dir:'act',      files: mk('act', 2)},
+  diag:     {dir:'diag',     files: []},
+  defects:  {dir:'defects',  files: []},
+};
+
+for (const [key, g] of Object.entries(galleries)) {
+  const car = document.querySelector(`[data-gallery="${key}"]`);
+  const track = car.querySelector('.track');
+  if (!g.files.length) { const h=car.previousElementSibling; if(h&&h.tagName==='H3') h.remove(); car.remove(); continue; }
+  track.innerHTML = g.files.map((f,i) =>
+    `<a href="${g.dir}/${f}" data-i="${i}"><img src="${g.dir}/${f}" alt="" loading="lazy" decoding="async"></a>`
+  ).join('');
+  const bar = document.createElement('div');
+  bar.className = 'bar';
+  bar.innerHTML = `<button class="p" aria-label="Назад">‹</button><button class="n" aria-label="Вперёд">›</button>
+    <span class="count">1 / ${g.files.length}</span><span class="hint">Нажмите на фото, чтобы увеличить</span>`;
+  car.appendChild(bar);
+  const step = () => track.clientWidth * 0.8;
+  bar.querySelector('.p').onclick = () => track.scrollBy({left:-step(), behavior:'smooth'});
+  bar.querySelector('.n').onclick = () => track.scrollBy({left: step(), behavior:'smooth'});
+  const count = bar.querySelector('.count');
+  const slides = [...track.children];
+  track.addEventListener('scroll', () => {
+    const x = track.scrollLeft + 4;
+    let cur = 0;
+    slides.forEach((el,i) => { if (el.offsetLeft <= x) cur = i; });
+    count.textContent = `${cur+1} / ${slides.length}`;
+  }, {passive:true});
+}
+
+/* ---------- Лайтбокс ---------- */
+const lb = document.getElementById('lb'), lbImg = lb.querySelector('img'), lbCnt = lb.querySelector('.cnt');
+let list = [], idx = 0;
+function show(i){ idx=(i+list.length)%list.length; lbImg.src=list[idx]; lbCnt.textContent=`${idx+1} / ${list.length}`; }
+document.querySelectorAll('.car .track').forEach(track=>{
+  track.addEventListener('click', e=>{
+    const a = e.target.closest('a'); if(!a) return;
+    e.preventDefault();
+    list = [...track.querySelectorAll('a')].map(x=>x.href);
+    show(+a.dataset.i); lb.classList.add('open');
+  });
+});
+lb.querySelector('.close').onclick = ()=>lb.classList.remove('open');
+lb.querySelector('.prev').onclick = ()=>show(idx-1);
+lb.querySelector('.next').onclick = ()=>show(idx+1);
+lb.addEventListener('click', e=>{ if(e.target===lb) lb.classList.remove('open'); });
+document.addEventListener('keydown', e=>{
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') lb.classList.remove('open');
+  if(e.key==='ArrowLeft') show(idx-1);
+  if(e.key==='ArrowRight') show(idx+1);
+});
+/* свайп в лайтбоксе */
+let sx=null;
+lb.addEventListener('touchstart', e=>{ sx=e.touches[0].clientX; }, {passive:true});
+lb.addEventListener('touchend', e=>{ if(sx===null) return; const dx=e.changedTouches[0].clientX-sx; if(Math.abs(dx)>50) show(idx+(dx<0?1:-1)); sx=null; });
+</script>
+</body>
+</html>
